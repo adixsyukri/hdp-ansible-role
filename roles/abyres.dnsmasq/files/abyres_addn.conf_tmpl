@@ -1,0 +1,2 @@
+no-hosts
+addn-hosts=/opt/dnsmasq-config/hosts

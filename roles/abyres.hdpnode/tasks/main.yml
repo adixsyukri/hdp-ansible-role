@@ -22,6 +22,10 @@
 - name: install Ambari 2.2.1.1 repository
   template: src=ambari.repo dest=/etc/yum.repos.d/ambari.repo
 
+- name: configure hosts file
+  copy: src={{ hosts_file }} dest=/etc/hosts
+  when: hosts_file
+
 - name: copy ssh public key
   authorized_key: user=root key="{{ item }}"
   with_file:
