@@ -1,0 +1,29 @@
+---
+# tasks file for abyres.hdpnode
+#
+- name: disable selinux
+  selinux: state=disabled 
+
+- name: upload jdk rpm
+  copy: src=jdk-8u65-linux-x64.rpm dest=/root/jdk-8u65-linux-x64.rpm
+
+- name: install jdk rpm
+  yum: name=/root/jdk-8u65-linux-x64.rpm
+
+- name: set default java
+  alternatives: name=java path=/usr/java/jdk1.8.0_65/jre/bin/java 
+
+- name: disable firewall
+  service: name=firewalld state=stopped enabled=no
+
+- name: install HDP 2.4 repository
+  template: src=hdp.repo dest=/etc/yum.repos.d/hdp.repo
+
+- name: install Ambari 2.2.1.1 repository
+  template: src=ambari.repo dest=/etc/yum.repos.d/ambari.repo
+
+- name: copy ssh public key
+  authorized_key: user=root key="{{ item }}"
+  with_file:
+    - "{{ public_key }}"
+
