@@ -13,12 +13,12 @@
   file : dest=/opt/ambari-install state=directory mode=0755
 
 - name: configure ambari-server
-  shell: creates=/opt/ambari-install/ansible.done ambari-server setup -j {{ java_home }} -s > /tmp/ambari-install-output executable=/bin/bash
+  shell: creates=/opt/ambari-install/ambari-install-output ambari-server setup -j {{ java_home }} -s > /opt/ambari-install/ambari-install-output executable=/bin/bash
   environment:
     JAVA_HOME: "{{ java_home }}"
 
 - name : check if ambari-server is installed
-  wait_for : path=/tmp/ambari-install-output search_regex="completed successfully"
+  wait_for : path=/opt/ambari-install/ambari-install-output search_regex="completed successfully"
 
 - name : start ambari server and enabled at reboot
   service : name=ambari-server state=restarted enabled=yes
