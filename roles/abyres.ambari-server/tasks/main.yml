@@ -20,6 +20,11 @@
 - name : check if ambari-server is installed
   wait_for : path=/opt/ambari-install/ambari-install-output search_regex="completed successfully"
 
+- name : configure postgresql driver
+  shell: creates=/opt/ambari-install/ambari-postgresql-setup-output ambari-server setup -j {{ java_home }} -s --jdbc-db=postgres --jdbc-driver=/usr/lib/ambari-server/postgresql-9.3-1101-jdbc4.jar > /opt/ambari-install/ambari-postgresql-setup-output executable=/bin/bash
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+
 - name : start ambari server and enabled at reboot
   service : name=ambari-server state=restarted enabled=yes
 
