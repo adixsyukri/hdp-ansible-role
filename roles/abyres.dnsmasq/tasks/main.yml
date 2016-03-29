@@ -4,11 +4,14 @@
 - name: install dnsmasq
   yum: name=dnsmasq state=latest
 
-- name : Create config
+- name : create config
   file : dest=/opt/dnsmasq-config/ state=directory mode=0755
 
 - name: create hosts file
   template: src=hosts_tmpl dest=/opt/dnsmasq-config/hosts
+
+- name: create upstream resolv file
+  template: src=resolv.conf_tmpl dest=/opt/dnsmasq-config/resolv.conf
 
 - name: configure dnsmasq 
   copy: src=abyres_addn.conf_tmpl dest=/etc/dnsmasq.d/abyres_addn.conf
