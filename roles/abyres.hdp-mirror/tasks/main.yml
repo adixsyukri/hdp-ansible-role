@@ -1,0 +1,35 @@
+---
+# tasks file for abyres.hdp-mirror
+- name: install httpd
+  yum: name=httpd state=latest
+
+- name: create directory
+  file: dest=/opt/mirror/ state=directory mode=0755
+
+- name: download Ambari repo
+  get_url: url={{ ambari_tarball_url }} dest=/opt/mirror/{{ ambari_tarball_url | basename }} sha256sum={{ ambari_tarball_checksum }}
+
+- name: download HDP repo
+  get_url: url={{ hdp_tarball_url }} dest=/opt/mirror/{{ hdp_tarball_url | basename }} sha256sum={{ hdp_tarball_checksum }}
+
+- name: download HDP-UTILS repo
+  get_url: url={{ hdputils_tarball_url }} dest=/opt/mirror/{{ hdputils_tarball_url | basename }} sha256sum={{ hdputils_tarball_checksum }}
+
+- name: download JDK rpm
+  get_url: url={{ jdk_rpm_url }} dest=/opt/mirror/{{ jdk_rpm_url | basename }} sha256sum={{ jdk_rpm_checksum }}
+
+- name: create http mirror directory
+  file: dest=/var/www/html/mirror/ state=directory mode=0755
+
+- name: extract Ambari repo
+  unarchive: src=/opt/mirror/{{ ambari_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/AMBARI-2.2.1.1
+
+- name: extract HDP repo
+  unarchive: src=/opt/mirror/{{ hdp_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP
+
+- name: extract HDP-UTILS repo
+  unarchive: src=/opt/mirror/{{ hdputils_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP-UTILS-1.1.0.20
+
+- name: start httpd
+  service: name=httpd state=running enabled=yes
+
