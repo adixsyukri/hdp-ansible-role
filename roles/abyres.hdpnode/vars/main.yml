@@ -5,4 +5,6 @@ public_key:
 hdp_24_repourl: http://public-repo-1.hortonworks.com/HDP/centos6/2.x/updates/2.4.0.0
 hdputils_24_repourl: http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/repos/centos6
 ambari_2211_repourl: http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.2.1.1
+jdk_rpm_url: https://mirror.its.sfu.ca/mirror/CentOS-Third-Party/NSG/common/x86_64/jdk-8u65-linux-x64.rpm
+epel_release_rpm_url: https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 hosts_file: 

@@ -4,11 +4,24 @@
 - name: disable selinux
   selinux: state=disabled 
 
-- name: upload jdk rpm
-  copy: src=jdk-8u65-linux-x64.rpm dest=/root/jdk-8u65-linux-x64.rpm
+- name: install EPEL for CentOS
+  yum: name=epel-release
+  when: ansible_distribution == "CentOS"
 
-- name: install jdk rpm
-  yum: name=/root/jdk-8u65-linux-x64.rpm
+- name: install EPEL for RHEL
+  yum: name={{ epel_release_rpm_url }}
+  when: ansible_distribution == "RedHat"
+
+- name: update OS
+  yum: name=* state=latest
+
+- name: check if Oracle JDK is installed
+  command: rpm -q jdk1.8.0_65
+  register: jdk_rpm_check
+
+- name: install Oracle JDK
+  yum: name={{ jdk_rpm_url }}
+  when: jdk_rpm_check.rc == 1
 
 - name: set default java
   alternatives: name=java path=/usr/java/jdk1.8.0_65/jre/bin/java 
@@ -22,9 +35,18 @@
 - name: install Ambari 2.2.1.1 repository
   template: src=ambari.repo dest=/etc/yum.repos.d/ambari.repo
 
+- name: install haveged
+  yum: name=haveged
+
+- name: start haveged
+  service: name=haveged state=restarted enabled=yes
+
+- name: get hostname
+  command: hostname 
+  register: hostname
+
 - name: configure hosts file
-  copy: src={{ hosts_file }} dest=/etc/hosts
-  when: hosts_file
+  template: src=hosts_tmpl dest=/etc/hosts
 
 - name: copy ssh public key
   authorized_key: user=root key="{{ item }}"
