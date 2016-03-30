@@ -1,0 +1,47 @@
+- hosts: master
+  remote_user: root
+  roles:
+    - { role: "abyres.hdp-mirror" }
+
+- hosts: master:slaves
+  remote_user: root
+  roles: 
+  - { role: "abyres.hdpnode",
+      public_key: "keys/id_rsa.pub",
+      ambari_2211_repourl: "http://192.168.0.204/mirror/AMBARI-2.2.1.1/centos7/2.2.1.1-70/",
+      hdp_24_repourl: "http://192.168.0.204/mirror/HDP/centos7/2.x/updates/2.4.0.0/",
+      hdputils_24_repourl: "http://192.168.0.204/mirror/HDP-UTILS-1.1.0.20/repos/centos7/",
+      jce_policy_zip: "files/jce_policy-8.zip" }
+
+- hosts: master
+  remote_user: root
+  roles: 
+  - { role: "abyres.ntpd" }
+  - { role: "abyres.dnsmasq",
+      upstream_nameservers: ["192.168.0.254"],
+      upstream_searches: ["abyres.net"],
+      hosts: [
+        "192.168.0.204 hdpmaster.abyres.net hdpmaster",
+        "192.168.0.205 hdpnode1.abyres.net hdpnode1",
+        "192.168.0.206 hdpnode2.abyres.net hdpnode2",
+        "192.168.0.207 hdpnode3.abyres.net hdpnode3",
+    ]}
+  - { role: "abyres.resolv",
+      nameservers: ["192.168.0.204"] }
+  - { role: "abyres.ambari-server",
+      private_key: "keys/id_rsa" }
+  - { role: "abyres.hdp-pgsql",
+      superuser_password: "@password@",
+      hive_db_password: "@password@",
+      oozie_db_password: "@password@",
+      ranger_db_password: "@password@",
+      rangeraudit_db_password: "@password@",
+      rangerkms_db_password: "@password@"}
+
+- hosts: slaves
+  remote_user: root
+  roles: 
+  - { role: "abyres.resolv",
+      nameservers: ["192.168.0.204"] }
+  - { role: "abyres.ntpd",
+      timeservers: ["192.168.0.204"] }
