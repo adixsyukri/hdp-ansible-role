@@ -23,6 +23,14 @@
   yum: name={{ jdk_rpm_url }}
   when: jdk_rpm_check.rc == 1
 
+- name: install UnlimitedJCE policy
+  unarchive: src={{ jce_policy_zip }} dest=/opt/ creates=/opt/UnlimitedJCEPolicyJDK8/
+
+- name: apply UnlimitedJCE policy 
+  shell: cp /opt/UnlimitedJCEPolicyJDK8/* /usr/java/jdk1.8.0_65/jre/lib/security/
+  args:
+    creates: /usr/java/jdk1.8.0_65/jre/lib/security/README.txt
+
 - name: set default java
   alternatives: name=java path=/usr/java/jdk1.8.0_65/jre/bin/java 
 
