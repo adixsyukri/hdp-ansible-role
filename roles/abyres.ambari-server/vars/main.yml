@@ -1,3 +1,26 @@
 ---
 # vars file for abyres.ambari-server
 java_home: /usr/java/jdk1.8.0_65/
+service_extensions:
+  - { repo: "https://github.com/abajwa-hw/solr-stack.git",
+      hdp_version: "2.4",
+      label: "SOLR" }
+  - { repo: "https://github.com/hortonworks-gallery/ambari-zeppelin-service.git",
+      hdp_version: "2.4",
+      label: "ZEPPELIN" }
+  - { repo: "https://github.com/abajwa-hw/ambari-nifi-service.git",
+      hdp_version: "2.4",
+      label: "NIFI" }
+iframe_views:
+  - { name: "atlas",
+      label: "Atlas",
+      url: "http://{{ atlas_host }}:21000/" }
+  - { name: "falcon",
+      label: "Falcon",
+      url: "http://{{ falcon_host }}:15000/" }
+  - { name: "nifi",
+      label: "NiFi",
+      url: "http://{{ nifi_host }}:9090/nifi" }
+  - { name: "oozie",
+      label: "Oozie",
+      url: "http://{{ oozie_host }}:11000/oozie" }
