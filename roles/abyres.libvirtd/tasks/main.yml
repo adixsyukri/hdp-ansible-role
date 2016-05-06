@@ -14,6 +14,6 @@
 
 - name: copy ISO
   command: scp root@192.168.0.3:/root/CentOS-7.1-x86_64-DVD-1503-01.iso /var/lib/libvirt/images/CentOS-7.1-x86_64-DVD-1503-01.iso
-#  args:
-#    creates: /var/lib/libvirt/images/CentOS-7.1-x86_64-DVD-1503-01.iso
-#
+  args:
+    creates: /var/lib/libvirt/images/CentOS-7.1-x86_64-DVD-1503-01.iso
+

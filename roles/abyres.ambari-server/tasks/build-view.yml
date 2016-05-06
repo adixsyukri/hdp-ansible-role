@@ -1,7 +1,7 @@
-- set_fact: view_config={{ item }}
+- set_fact: view_config="{{ item }}"
 
 - name: copy dir
-  shell: cp -r /opt/iframe-view/ambari-iframe-view /opt/iframe-view/{{ view_config.name }}-view
+  command: cp -r /opt/iframe-view/ambari-iframe-view /opt/iframe-view/{{ view_config.name }}-view
   args: 
     creates: /opt/iframe-view/{{ view_config.name }}-view
 

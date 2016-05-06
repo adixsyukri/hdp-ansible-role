@@ -58,4 +58,3 @@
   postgresql_user: db=rangerkms name=rangerkms password={{ rangerkms_db_password }} priv=ALL
   become: true
   become_user: postgres
-
