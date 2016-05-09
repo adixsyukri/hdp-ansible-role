@@ -10,4 +10,4 @@ hdputils_tarball_url: http://public-repo-1.hortonworks.com/HDP-UTILS-1.1.0.20/re
 hdputils_tarball_checksum: 109812d84dde086591b862a6526fd55859b0d1966c5c2ffce3242b8d65c44d1b
 
 jdk_rpm_url: https://mirror.its.sfu.ca/mirror/CentOS-Third-Party/NSG/common/x86_64/jdk-8u65-linux-x64.rpm
-jdk_rpm_checksum: 109812d84dde086591b862a6526fd55859b0d1966c5c2ffce3242b8d65c44d1b
+jdk_rpm_checksum: f6a9046c700e020e3f34e9aefb795f134e225f3242eda420fb99aa62bedbeabd
