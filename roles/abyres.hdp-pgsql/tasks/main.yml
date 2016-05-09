@@ -9,12 +9,12 @@
   become_user: postgres
 
 - name: create hive metastore db
-  postgresql_db: name=hive_metastore encoding='UTF-8'
+  postgresql_db: name=hive encoding='UTF-8'
   become: true
   become_user: postgres
 
 - name: create hive metastore user
-  postgresql_user: db=hive_metastore name=hive password={{ hive_db_password }} priv=ALL
+  postgresql_user: db=hive name=hive password={{ hive_db_password }} priv=ALL
   become: true
   become_user: postgres
 
