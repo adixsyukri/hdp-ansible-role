@@ -38,7 +38,8 @@
 
 - name: copy JDK rpm
   command: cp /opt/mirror/{{ jdk_rpm_url | basename }} /var/www/html/mirror/{{ jdk_rpm_url | basename }}
-  creates: /var/www/html/mirror/{{ jdk_rpm_url | basename }}
+  args:
+    creates: /var/www/html/mirror/{{ jdk_rpm_url | basename }}
 
 - name: start httpd
   service: name=httpd state=running enabled=yes
