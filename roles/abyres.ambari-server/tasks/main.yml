@@ -9,6 +9,9 @@
 - name: Ensure ambari-server is stopped
   service: name=ambari-server state=stopped
 
+- name: install git
+  yum: name=git state=latest
+
 - name : Create folder
   file : dest=/opt/ambari-install state=directory mode=0755
 
