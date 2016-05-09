@@ -15,6 +15,9 @@
 - name: update OS
   yum: name=* state=latest
 
+- name: install unarchivers
+  yum: name=bzip2,unzip,tar
+
 - name: check if Oracle JDK is installed
   command: rpm -q jdk1.8.0_65
   register: jdk_rpm_check
