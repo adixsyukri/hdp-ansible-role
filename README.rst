@@ -24,3 +24,52 @@ Tasks:
 * install oracle java 1.7
 * setup oracle java as default system java
 * install SSH key
+
+abyres.ambari-server
+===================
+
+Purpose: Setup ambari server 
+
+Tasks:
+
+abyres.hdp-mirror
+================
+
+Purpose: Setup HDP mirror for faster local installation
+
+Tasks:
+
+abyres.hdp-pgsql
+================
+
+Purpose: Setup remote Postgresql to be used as ambari server metadata
+
+Tasks:
+
+abyres.ntpd
+===========
+
+Purpose: Setup ntpd
+
+Tasks:
+
+abyres.dnsmasq
+==============
+
+Purpose: Setup dnsmasq
+
+Tasks:
+
+abyres.libvirtd
+===============
+
+Purpose: Setup libvirtd
+
+Tasks:
+
+abyres.resolv
+=============
+
+Purpose: Configure /etc/resolve 
+
+Tasks:
