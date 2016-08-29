@@ -19,6 +19,17 @@
   shell: creates=/opt/ambari-install/ambari-install-output ambari-server setup -j {{ java_home }} -s > /opt/ambari-install/ambari-install-output executable=/bin/bash
   environment:
     JAVA_HOME: "{{ java_home }}"
+  when: default
+
+- name: configure ambari-server with remote metadata
+  shell: creates=/opt/ambari-install/ambari-install-output ambari-server setup -j {{ java_home }} --database=postgres --databasehost={{ db_hostname }} --databaseport={{ db_port }} --databasename=ambari --postgresschema=ambari --databaseusername=ambari --databasepassword=bigdata -s > /opt/ambari-install/ambari-install-output executable=/bin/bash
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+  when: not default
+
+- name: install postgresql
+  yum: name=postgresql state=latest
+  when: not default
 
 - name : check if ambari-server is installed
   wait_for : path=/opt/ambari-install/ambari-install-output search_regex="completed successfully"
