@@ -29,7 +29,7 @@
   - { role: "abyres.resolv",
       nameservers: ["192.168.0.204"] }
   - { role: "abyres.ambari-server",
-      default: true,
+      install_default: true,
       private_key: "keys/id_rsa" }
   - { role: "abyres.hdp-pgsql",
       superuser_password: "@password@",
