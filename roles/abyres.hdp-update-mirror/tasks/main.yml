@@ -2,15 +2,15 @@
 # tasks file for abyres.hdp-update-mirror
 
 - name: download Ambari repo
-  get_url: url={{ ambari_tarball_url }} dest=/opt/mirror/{{ ambari_tarball_url | basename }} sha256sum={{ ambari_tarball_checksum }}
+  get_url: url={{ ambari_tarball_url }} dest=/opt/mirror/{{ ambari_tarball_url | basename }} checksum={{ ambari_tarball_checksum }}
   when: ambari_download
 
 - name: download HDP repo
-  get_url: url={{ hdp_tarball_url }} dest=/opt/mirror/{{ hdp_tarball_url | basename }} sha256sum={{ hdp_tarball_checksum }}
+  get_url: url={{ hdp_tarball_url }} dest=/opt/mirror/{{ hdp_tarball_url | basename }} checksum={{ hdp_tarball_checksum }}
   when: hdp_download
 
 - name: download HDP-UTILS repo
-  get_url: url={{ hdputils_tarball_url }} dest=/opt/mirror/{{ hdputils_tarball_url | basename }} sha256sum={{ hdputils_tarball_checksum }}
+  get_url: url={{ hdputils_tarball_url }} dest=/opt/mirror/{{ hdputils_tarball_url | basename }} checksum={{ hdputils_tarball_checksum }}
   when: utils_download
 
 - name: extract Ambari repo
