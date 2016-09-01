@@ -14,13 +14,13 @@
   when: utils_download
 
 - name: extract Ambari repo
-  unarchive: src=/opt/mirror/{{ ambari_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/AMBARI-2.2.1.1
+  unarchive: src=/opt/mirror/{{ ambari_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ ambari_tarball_url | basename }}
   when: ambari_download
 
 - name: extract HDP repo
-  unarchive: src=/opt/mirror/{{ hdp_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP
+  unarchive: src=/opt/mirror/{{ hdp_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ hdp_tarball_url | basename }}
   when: hdp_download
 
 - name: extract HDP-UTILS repo
-  unarchive: src=/opt/mirror/{{ hdputils_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP-UTILS-1.1.0.20
+  unarchive: src=/opt/mirror/{{ hdputils_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ hdputils_tarball_url | basename}}
   when: utils_download
