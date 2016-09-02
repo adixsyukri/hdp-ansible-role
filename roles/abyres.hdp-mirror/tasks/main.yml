@@ -28,13 +28,13 @@
   file: dest=/var/www/html/mirror/ state=directory mode=0755
 
 - name: extract Ambari repo
-  unarchive: src=/opt/mirror/{{ ambari_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/AMBARI-2.2.1.1
+  unarchive: src=/opt/mirror/{{ ambari_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ ambari_tarball_url | basename }}
 
 - name: extract HDP repo
-  unarchive: src=/opt/mirror/{{ hdp_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP
+  unarchive: src=/opt/mirror/{{ hdp_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ hdp_tarball_url | basename }}
 
 - name: extract HDP-UTILS repo
-  unarchive: src=/opt/mirror/{{ hdputils_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/HDP-UTILS-1.1.0.20
+  unarchive: src=/opt/mirror/{{ hdputils_tarball_url | basename }} dest=/var/www/html/mirror/ copy=no creates=/var/www/html/mirror/{{ hdputils_tarball_url | basename }}
 
 - name: copy JDK rpm
   command: cp /opt/mirror/{{ jdk_rpm_url | basename }} /var/www/html/mirror/{{ jdk_rpm_url | basename }}
