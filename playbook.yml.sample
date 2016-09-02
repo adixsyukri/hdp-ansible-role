@@ -28,16 +28,23 @@
     ]}
   - { role: "abyres.resolv",
       nameservers: ["192.168.0.204"] }
-  - { role: "abyres.ambari-server",
-      install_default: true,
-      private_key: "keys/id_rsa" }
   - { role: "abyres.hdp-pgsql",
       superuser_password: "@password@",
       hive_db_password: "@password@",
       oozie_db_password: "@password@",
       ranger_db_password: "@password@",
       rangeraudit_db_password: "@password@",
-      rangerkms_db_password: "@password@"}
+      rangerkms_db_password: "@password@"
+      ambari_postgres_sql: "create.sql.tpl",
+      ambari_active_username: "ambari_user",
+      ambari_db_password: "ambari_passwd",
+      ambari_db_name: "ambari_db"
+    }
+  - { role: "abyres.ambari-server",
+      install_default: false,
+      db_hostname: "192.168.0.10",
+      db_port: "5432",
+      private_key: "keys/id_rsa" }
 
 - hosts: slaves
   remote_user: root
