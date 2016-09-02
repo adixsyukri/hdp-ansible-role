@@ -13,9 +13,9 @@ service_extensions:
       hdp_version: "2.4",
       label: "NIFI" }
 iframe_views:
-  - { name: "atlas",
-      label: "Atlas",
-      url: "http://{{ atlas_host }}:21000/" }
+#  - { name: "atlas",
+#      label: "Atlas",
+#      url: "http://{{ atlas_host }}:21000/" }
   - { name: "falcon",
       label: "Falcon",
       url: "http://{{ falcon_host }}:15000/" }

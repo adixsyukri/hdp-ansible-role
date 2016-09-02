@@ -75,3 +75,6 @@
 
 - name: initialize hdpmetadata postgresql
   shell: psql -U postgres -f ~/create.sql -v username='"{{ ambari_active_username }}"' -v password="'{{ ambari_db_password }}'" -v dbname="{{ ambari_db_name }}"
+
+- name: allow tcp port 5432 in iptable
+  shell: iptables -I INPUT 1 -p tcp --dport 5432 -j ACCEPT
