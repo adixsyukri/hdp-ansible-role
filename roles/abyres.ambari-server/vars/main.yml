@@ -4,13 +4,13 @@ java_home: /usr/java/jdk1.8.0_65/
 install_default: true
 service_extensions:
   - { repo: "https://github.com/abajwa-hw/solr-stack.git",
-      hdp_version: "2.4",
+      hdp_version: "2.5",
       label: "SOLR" }
   - { repo: "https://github.com/hortonworks-gallery/ambari-zeppelin-service.git",
-      hdp_version: "2.4",
+      hdp_version: "2.5",
       label: "ZEPPELIN" }
   - { repo: "https://github.com/abajwa-hw/ambari-nifi-service.git",
-      hdp_version: "2.4",
+      hdp_version: "2.5",
       label: "NIFI" }
 iframe_views:
 #  - { name: "atlas",
