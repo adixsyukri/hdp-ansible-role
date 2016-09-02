@@ -56,8 +56,11 @@
 - include: build-view.yml
   with_items: "{{ iframe_views }}"
 
-- name : start ambari server and enabled at reboot
-  service : name=ambari-server state=restarted enabled=yes
+- name : restart ambari server
+  command : ambari-server restart --skip-broken
+
+- name: enable ambari server at reboot
+  service: name=ambari-server enabled=yes
 
 - name : check if ambari-server is up
   wait_for : host=127.0.0.1 port=8080 delay=10
