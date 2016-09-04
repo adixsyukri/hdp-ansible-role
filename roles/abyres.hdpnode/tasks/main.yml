@@ -41,11 +41,21 @@
 - name: disable firewall
   service: name=firewalld state=stopped enabled=no
 
-- name: install HDP 2.4 repository
+- name: install HDP repository
   template: src=hdp.repo dest=/etc/yum.repos.d/hdp.repo
+  when: hdp_repo == '2.4'
 
-- name: install Ambari 2.2.1.1 repository
+- name: install HDP repository
+  template: src=hdp2.5.repo dest=/etc/yum.repos.d/hdp.repo
+  when: hdp_repo == '2.5'
+
+- name: install Ambari repository
   template: src=ambari.repo dest=/etc/yum.repos.d/ambari.repo
+  when: ambari_repo == '2.2.1.1'
+
+- name: install Ambari repository
+  template: src=ambari2.4.repo dest=/etc/yum.repos.d/ambari.repo
+  when: ambari_repo == '2.4.0.1'
 
 - name: install haveged
   yum: name=haveged
