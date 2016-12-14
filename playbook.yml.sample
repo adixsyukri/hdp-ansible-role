@@ -8,9 +8,9 @@
   roles: 
   - { role: "abyres.hdpnode",
       public_key: "keys/id_rsa.pub",
-      ambari_2211_repourl: "http://192.168.0.204/mirror/AMBARI-2.2.1.1/centos7/2.2.1.1-70/",
-      hdp_24_repourl: "http://192.168.0.204/mirror/HDP/centos7/2.x/updates/2.4.0.0/",
-      hdputils_24_repourl: "http://192.168.0.204/mirror/HDP-UTILS-1.1.0.20/repos/centos7/",
+      ambari_repourl: "http://192.168.0.204/mirror/AMBARI-2.2.1.1/centos7/2.2.1.1-70/",
+      hdp_repourl: "http://192.168.0.204/mirror/HDP/centos7/2.x/updates/2.4.0.0/",
+      hdputils_repourl: "http://192.168.0.204/mirror/HDP-UTILS-1.1.0.20/repos/centos7/",
       jce_policy_zip: "files/jce_policy-8.zip" }
 
 - hosts: master
